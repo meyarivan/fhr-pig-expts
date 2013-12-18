@@ -6,4 +6,8 @@ pig -param mintimestamp=0 -param maxtimestamp=$(( $(date -d $(date -d today +"%Y
 ##### To read exported data 
 pig -param input=DEST_DIR/part* -param output=DEST_DIR_N  test_read.pig
 
+##### To query addon data
+pig -param input=DEST_DIR/part* -param output=DEST_DIR_N  addon_query.pig
+
+
 

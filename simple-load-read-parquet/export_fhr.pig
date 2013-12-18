@@ -38,13 +38,15 @@ SET mapred.output.compression.codec org.apache.hadoop.io.compress.SnappyCodec;
 SET mapred.job.reuse.jvm.num.tasks 32;
 
 
+-- Parse and export all FHR records as rows with nested values for some of the columns
+
 raw = LOAD 'hbase://metrics' USING 
     org.apache.pig.backend.hadoop.hbase.HBaseStorage('data:json', 
-    '-loadKey=true -minTimestamp=$mintimestamp -maxTimestamp=$maxtimestamp -caching=1000') 
+    '-loadKey=true -minTimestamp=$mintimestamp -maxTimestamp=$maxtimestamp -caching=1000 -limit=5 -lte=01') 
     AS (id:bytearray, data:bytearray);
 
 -- ParquetStorer() dies with "can not get schema" if "raw_limited = LIMIT raw ..." is used
 raw_limited = raw; 
 
 processed = FOREACH raw_limited GENERATE id AS id,FLATTEN(myfuncs.map(data)),data;
-STORE processed INTO '$output' USING parquet.pig.ParquetStorer;
+STORE processed INTO '$output.pq' USING parquet.pig.ParquetStorer;
