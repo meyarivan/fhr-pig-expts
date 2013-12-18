@@ -42,7 +42,7 @@ SET mapred.job.reuse.jvm.num.tasks 32;
 
 raw = LOAD 'hbase://metrics' USING 
     org.apache.pig.backend.hadoop.hbase.HBaseStorage('data:json', 
-    '-loadKey=true -minTimestamp=$mintimestamp -maxTimestamp=$maxtimestamp -caching=1000 -limit=5 -lte=01') 
+    '-loadKey=true -minTimestamp=$mintimestamp -maxTimestamp=$maxtimestamp -caching=1000') 
     AS (id:bytearray, data:bytearray);
 
 -- ParquetStorer() dies with "can not get schema" if "raw_limited = LIMIT raw ..." is used
