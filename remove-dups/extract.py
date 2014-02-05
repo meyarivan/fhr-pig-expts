@@ -1,10 +1,12 @@
 
 
 import os, sys
+from datetime import datetime, timedelta
+import hashlib
+import random
 
 import com.alibaba.fastjson.JSON as JSON
 import java.util.Map as Map
-from datetime import datetime, timedelta
 import org.python.core.PyDictionary as PyDictionary
 import java.util.HashMap
 
@@ -12,8 +14,6 @@ import org.apache.pig.tools.pigstats.PigStatusReporter as PigStatusReporter
 import org.apache.pig.tools.counters.PigCounterHelper as PigCounterHelper
 import org.apache.pig.impl.util.UDFContext as UDFContext
 
-import hashlib
-import random
 
 VALID_DATES = None
 MAX_VALID_DATE = -1
