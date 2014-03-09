@@ -1,0 +1,18 @@
+SET mapred.output.compress true;
+SET mapred.output.compression.codec org.apache.hadoop.io.compress.SnappyCodec;
+
+register '/shared/fhr/pig/libs/parquet-format-1.0.0.jar';
+register '/shared/fhr/pig/libs/parquet-encoding-1.2.9.jar';
+register '/shared/fhr/pig/libs/parquet-column-1.2.9.jar';
+register '/shared/fhr/pig/libs/parquet-common-1.2.9.jar';
+register '/shared/fhr/pig/libs/parquet-hadoop-1.2.9.jar';
+register '/shared/fhr/pig/libs/parquet-pig-1.2.9.jar';
+
+register '/shared/fhr/pig/libs/fastjson-1.1.37.jar';
+
+register '/opt/cloudera/parcels/CDH/lib/pig/piggybank.jar';
+
+register '/shared/fhr/pig/libs/guava-16.0.1.jar';
+
+SET pig.exec.mapPartAgg true;
+SET mapred.job.reuse.jvm.num.tasks 8;

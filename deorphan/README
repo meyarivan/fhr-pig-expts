@@ -1,0 +1,13 @@
+[1] Export FHR data (SEQ files, <Text, Text>)
+[2] Extract metadata using extract_meta.pig
+[3] Extract head records using deorphan.pig
+
+Ex:
+# [2] Extract metadata from exported data with timestamp <= 2014-03-06 00:00:00
+
+pig -param start_date=2014-03-06 -param input=PATH_TO_FHR_EXPORT -param output=DEST_DIR extract_meta.pig
+
+# [3]
+
+pig -param start_date=2014-03-06 -param input=PATH_TO_OUTPUT_FROM_[2]  -param output=NEW_DEST_DIR -param max_rec_per_group=1 deorphan.pig
+
